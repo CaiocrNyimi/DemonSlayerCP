@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, FlatList, TouchableOpacity, ActivityIndicator, RefreshControl, Alert, Pressable } from "react-native"
+import { View, StyleSheet, Text, ActivityIndicator, RefreshControl, Pressable, Image } from "react-native"
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { useCallback } from "react";
@@ -7,12 +7,13 @@ import { getDemons } from "../services/apiService";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import DemonRow, { Demon } from "../components/DemonRow";
+import DemonDetailsScreen from "./DemonDetailsScreen";
 
 const DemonListScreen = () => {
     const navigation = useNavigation();
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { data: demons, isLoading, isError, error, refetch, isFetching } = useQuery({
+    const { data: demons, isLoading, isError, refetch, isFetching } = useQuery({
         queryKey: ['demons'],
         queryFn: getDemons,
         select: (data) => data.sort((a: Demon, b: Demon) => a.name.localeCompare(b.name)),
@@ -36,9 +37,6 @@ const DemonListScreen = () => {
         return (
             <View style={styles.center}>
                 <Text>Erro ao carregar slayers!</Text>
-                <Text style={{ marginTop: 10, color: 'red', textAlign: 'center' }}>
-                    Detalhes do erro: {error.message || 'Erro desconhecido'}
-                </Text>
             </View>
         );
     }
@@ -46,19 +44,13 @@ const DemonListScreen = () => {
     return(
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
-                <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between'
-                }}>
-                    <Text style={ styles.title }>Demon Slayers</Text>
-                </View>
                 <SwipeListView
                     style={ styles.list }
                     data={demons}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
                         <Pressable
-                            onPress={() => navigation.navigate('DemonDetailsScreen', { demon: item })}
+                            onPress={() => navigation.navigate("DemonDetailsScreen", { demon: item })}
                         >
                             <DemonRow demon={item} />
                         </Pressable>

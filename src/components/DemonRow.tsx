@@ -17,7 +17,7 @@ export default function DemonRow({demon}: {demon: Demon}) {
     return(
         <View style={ styles.container }>
             <Image
-                source={ {uri: demon.img } }
+                source={ {uri: demon.img} }
                 style={ styles.image }
             />
             <Text style={ styles.title }>{demon.name}</Text>
