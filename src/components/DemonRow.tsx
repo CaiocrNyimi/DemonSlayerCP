@@ -27,20 +27,25 @@ export default function DemonRow({demon}: {demon: Demon}) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#dfd8d898',
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 10,
+        marginVertical: 5,
+        borderRadius: 12,
     },
     image: {
-        width: 50,
-        height: 80,
+        width: 100,
+        height: 100,
         borderRadius: 8,
-        marginLeft: 12
+        marginLeft: 12,
+        resizeMode: 'contain',
+        marginRight: 10
     },
     title: {
-        marginHorizontal: 10,
+        flex: 1,
         fontSize: 16,
-        width: '50%'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
 })

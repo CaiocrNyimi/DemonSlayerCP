@@ -7,7 +7,8 @@ import { getDemons } from "../services/apiService";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import DemonRow, { Demon } from "../components/DemonRow";
-import DemonDetailsScreen from "./DemonDetailsScreen";
+
+import logo from "../../assets/logo.png"
 
 const DemonListScreen = () => {
     const navigation = useNavigation();
@@ -44,6 +45,10 @@ const DemonListScreen = () => {
     return(
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
+                <View style={styles.header}>
+                    <Image source={logo} style={styles.logo} />
+                    <Text style={styles.subtitle}>Escolha seu personagem abaixo</Text>
+                </View>
                 <SwipeListView
                     style={ styles.list }
                     data={demons}
@@ -79,27 +84,36 @@ export default DemonListScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f2f2f2",
-        paddingTop: 20,
+        backgroundColor: "#FFFFFF",
         paddingHorizontal: 20,
     },
+    header: {
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    logo: {
+        width: 200,
+        height: 200,
+        resizeMode: 'contain',
+        marginBottom: 10,
+    },
+    subtitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#333',
+    },
     separator: {
-        height: 1,
-        backgroundColor: '#eee'
+        height: 2,
     },
     list: {
         marginVertical: 16,
-        paddingHorizontal: 8,
         backgroundColor: '#fff',
         borderRadius: 12,
     },
-    title: {
-        fontSize: 36,
-        fontWeight: 'bold'
-    },
-   center: {
-        flex: 1, 
-        justifyContent: "center", 
+    center: {
+        flex: 1,
+        justifyContent: "center",
         alignItems: "center"
     },
     rowBack: {

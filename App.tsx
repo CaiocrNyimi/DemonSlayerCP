@@ -22,12 +22,27 @@ const App = () => {
           <Stack.Screen
             name="DemonListScreen"
             component={DemonListScreen}
-            options={{ title: 'Demon Slayer' }}
+            options={{ 
+              title: 'Demon Slayer',
+              headerTitleAlign: 'center',
+              headerTitleStyle: {
+                    fontWeight: 'bold',
+              }
+            }}
           />
           <Stack.Screen
             name="DemonDetailsScreen"
             component={DemonDetailsScreen}
-            options={{ title: 'Detalhes' }}
+            options={{
+              title: 'Detalhes',
+              headerTitleAlign: 'center',
+              headerBackTitle: 'Demon Slayer',
+              headerTintColor: '#007AFF',
+              headerTitleStyle: {
+                  color: '#000',
+                  fontWeight: 'bold',
+              }
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
